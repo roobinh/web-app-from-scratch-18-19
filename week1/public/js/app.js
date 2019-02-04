@@ -27,23 +27,53 @@ function addElements() {
 	paraLongLat.appendChild(node);	
 	div.appendChild(paraLongLat);
 	
-	setMap(long, lat);	
+	createMap(long, lat);	
 }
 
 xmlhttp.addEventListener('load', addElements);
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
-function setMap(long, lat) {
+function createMap(long, lat) {
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicm9vYmluMTk5OSIsImEiOiJjanJxYzVpeGIwdzJ4NDlycTZvd2lramRkIn0.jEoxjM-oE38jYCIHnhLw_g';
+
 	if (!mapboxgl.supported()) {
-	alert('Your browser does not support Mapbox GL');
+		alert('Your browser does not support Mapbox GL');
 	} else {
-	var map = new mapboxgl.Map({
-	container: 'map',
-	style: 'mapbox://styles/mapbox/streets-v9',
-	center: [long, lat],
-	zoom: 12
-	});
+		var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/streets-v9',
+			center: [long, lat],
+			zoom: 12
+		});
 	}
+
+	//Marker Location
+	var geojson = {
+	  type: 'FeatureCollection',
+	  features: [{
+	    type: 'Feature',
+	    geometry: {
+	      type: 'Point',
+	      coordinates: [long, lat]
+	    },
+	    properties: {
+	      title: 'Your Location',
+	      description: 'Washington, D.C.'
+	    }
+	  }]
+	};
+
+	//Add markers to map
+	geojson.features.forEach(function(marker) {
+
+	  //Create a HTML element for each feature
+	  var el = document.createElement('div');
+	  el.className = 'marker';
+
+	  //Make a marker for each feature and add to the map
+	  new mapboxgl.Marker(el)
+	    .setLngLat(marker.geometry.coordinates)
+	    .addTo(map);
+	});
 }
