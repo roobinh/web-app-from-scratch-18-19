@@ -4,7 +4,7 @@ body {
 
 .main {
   margin: auto;
-  width: 30%;
+  width: 60%;
   height: auto;
   padding: 10px;
   text-align: left;
@@ -12,7 +12,7 @@ body {
 }
 
 .main h3 {
-	text-align: right;
+	text-align: left;
 }
 
 #map { 

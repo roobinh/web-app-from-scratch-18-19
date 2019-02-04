@@ -22,9 +22,8 @@ function addElements() {
 
 	var long = data['longitude'];
 	var lat = data['latitude'];
-
 	var paraLongLat = document.createElement("p");
-	var node = document.createTextNode("Lat/Lang: " + data['latitude'] + ", " + data["longitude"]);
+	var node = document.createTextNode("Lat/Lang: " + long + ", " + lat);
 	paraLongLat.appendChild(node);	
 	div.appendChild(paraLongLat);
 	
