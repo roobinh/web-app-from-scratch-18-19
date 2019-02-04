@@ -6,6 +6,7 @@ function addElements() {
 	var data = JSON.parse(this.responseText);
     console.log(data);
 
+    topTitle.innerText = "General IP Information (" + data["ip"] + ")" ;
 	
 	var div = document.getElementById("results");
 
@@ -18,11 +19,6 @@ function addElements() {
 	node = document.createTextNode("Location: " + data["country_name"] + ", " + data["region"]);
 	paraLocation.appendChild(node);
 	div.appendChild(paraLocation);
-
-	var paraIP = document.createElement("p");
-	var node = document.createTextNode("IP: " + data["ip"]);
-	paraIP.appendChild(node);	
-	div.appendChild(paraIP);
 
 	var paraLongLat = document.createElement("p");
 	var node = document.createTextNode("Lat/Lang: " + data['latitude'] + ", " + data["longitude"]);
