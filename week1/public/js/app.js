@@ -25,7 +25,6 @@ function addElements() {
 	paraLongLat.appendChild(node);	
 	div.appendChild(paraLongLat);
 		
-	
 }
 
 xmlhttp.addEventListener('load', addElements);
