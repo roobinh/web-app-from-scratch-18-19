@@ -8,9 +8,6 @@ xmlhttp.send();
 
 function addElements() {
 	var data = JSON.parse(this.responseText);
-
-    topTitle.innerText = "You are here.";
-	
 	var div = document.getElementById("results");
 
 	var paraLocation = document.createElement("p");
@@ -30,8 +27,10 @@ function addElements() {
 }
 
 function createMap(long, lat) {
+	//API Key
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicm9vYmluMTk5OSIsImEiOiJjanJxYzVpeGIwdzJ4NDlycTZvd2lramRkIn0.jEoxjM-oE38jYCIHnhLw_g';
 
+	//Create Map
 	if (!mapboxgl.supported()) {
 		alert('Your browser does not support Mapbox GL');
 	} else {
