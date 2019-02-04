@@ -1,23 +1,37 @@
+var url = "https://ipapi.co/json/";
 var xmlhttp = new XMLHttpRequest();
 
-var url = "https://ipapi.co/json/";
+function addElements() {
 
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var myArr = JSON.parse(this.responseText);
-        console.log(myArr);
+	var data = JSON.parse(this.responseText);
+    console.log(data);
 
-		var para = document.createElement("p");
-		var div = document.getElementById("results");
-		var node = document.createTextNode("IP = " + myArr["ip"]);
-		para.appendChild(node);	
-		node = document.createTextNode("Test2");
-		para.appendChild(node);
-		div.appendChild(para);
-	}
-};
+	
+	var div = document.getElementById("results");
 
+	var paraRegion = document.createElement("p");
+	node = document.createTextNode("Region: " + data["region"]);
+	paraRegion.appendChild(node);
+	div.appendChild(paraRegion);
+
+	var paraLocation = document.createElement("p");
+	node = document.createTextNode("Location: " + data["country_name"] + ", " + data["region"]);
+	paraLocation.appendChild(node);
+	div.appendChild(paraLocation);
+
+	var paraIP = document.createElement("p");
+	var node = document.createTextNode("IP: " + data["ip"]);
+	paraIP.appendChild(node);	
+	div.appendChild(paraIP);
+
+	var paraLongLat = document.createElement("p");
+	var node = document.createTextNode("Lat/Lang: " + data['latitude'] + ", " + data["longitude"]);
+	paraLongLat.appendChild(node);	
+	div.appendChild(paraLongLat);
+		
+	
+}
+
+xmlhttp.addEventListener('load', addElements);
 xmlhttp.open("GET", url, true);
-
 xmlhttp.send();
-
