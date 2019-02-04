@@ -1,4 +1,4 @@
-body {
+* {
 	font-family: 'Inconsolata', monospace;
 }
 
@@ -35,5 +35,9 @@ h2 {
     .main {
     	width: 90%;
     	height: auto;
+    }
+
+    h2 {
+    	text-align: center;
     }
 }

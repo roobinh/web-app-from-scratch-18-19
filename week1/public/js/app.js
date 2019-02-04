@@ -22,6 +22,14 @@ function addElements() {
 	var node = document.createTextNode("(Long/lat: " + long + ", " + lat + ")");
 	paraLongLat.appendChild(node);	
 	div.appendChild(paraLongLat);
+
+	var button = document.createElement("button");
+	var node = document.createTextNode("Click here to show IP");
+	button.onclick = function(){
+   	 	alert('Your IP Adress is: ' + data["ip"]);return false;
+  	};
+	button.appendChild(node);
+	div.appendChild(button);
 	
 	createMap(long, lat);	
 }
