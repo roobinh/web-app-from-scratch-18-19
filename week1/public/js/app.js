@@ -1,24 +1,20 @@
 var xmlhttp = new XMLHttpRequest();
 
-var url = "http://worldcup.sfg.io/matches"
+var url = "https://ipapi.co/json/";
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
         console.log(myArr);
 
-        var i;
-			for(i = 0; i < myArr.length; i++) {
-				var para = document.createElement("p");
-				var node = document.createTextNode("Locatie = " + myArr[i]["venue"]);
-				var node2 = document.createTextNode("Winnaar = " + myArr[i]["winner"])
-				para.appendChild(node);	
-				para.appendChild(node2);
-				var element = document.getElementById("results");
-				element.appendChild(para);
-			}
-
-    }
+		var para = document.createElement("p");
+		var div = document.getElementById("results");
+		var node = document.createTextNode("IP = " + myArr["ip"]);
+		para.appendChild(node);	
+		node = document.createTextNode("Test2");
+		para.appendChild(node);
+		div.appendChild(para);
+	}
 };
 
 xmlhttp.open("GET", url, true);
