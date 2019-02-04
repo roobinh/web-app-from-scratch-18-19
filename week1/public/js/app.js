@@ -1,38 +1,33 @@
 var url = "https://ipapi.co/json/";
 var xmlhttp = new XMLHttpRequest();
 
+xmlhttp.addEventListener('load', addElements);
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+
 function addElements() {
-
 	var data = JSON.parse(this.responseText);
-    console.log(data);
 
-    topTitle.innerText = "General IP Information (" + data["ip"] + ")" ;
+    topTitle.innerText = "You are here.";
 	
 	var div = document.getElementById("results");
 
-	var paraRegion = document.createElement("p");
-	node = document.createTextNode("Region: " + data["region"]);
-	paraRegion.appendChild(node);
-	div.appendChild(paraRegion);
-
 	var paraLocation = document.createElement("p");
-	node = document.createTextNode("Location: " + data["country_name"] + ", " + data["region"]);
+	var node = document.createTextNode("Location: " + data["country_name"] + ", " + data["region"]);
 	paraLocation.appendChild(node);
 	div.appendChild(paraLocation);
 
 	var long = data['longitude'];
 	var lat = data['latitude'];
+
 	var paraLongLat = document.createElement("p");
-	var node = document.createTextNode("Lat/Lang: " + long + ", " + lat);
+	var node = document.createTextNode("(Long/lat: " + long + ", " + lat + ")");
 	paraLongLat.appendChild(node);	
 	div.appendChild(paraLongLat);
 	
 	createMap(long, lat);	
 }
-
-xmlhttp.addEventListener('load', addElements);
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
 
 function createMap(long, lat) {
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicm9vYmluMTk5OSIsImEiOiJjanJxYzVpeGIwdzJ4NDlycTZvd2lramRkIn0.jEoxjM-oE38jYCIHnhLw_g';
