@@ -10,13 +10,13 @@ function addElements() {
 	var data = JSON.parse(this.responseText);
 	var div = document.getElementById("results");
 
+	var long = data['longitude'];
+	var lat = data['latitude'];
+
 	var paraLocation = document.createElement("p");
 	var node = document.createTextNode("Location: " + data["country_name"] + ", " + data["region"]);
 	paraLocation.appendChild(node);
 	div.appendChild(paraLocation);
-
-	var long = data['longitude'];
-	var lat = data['latitude'];
 
 	var paraLongLat = document.createElement("p");
 	var node = document.createTextNode("(Long/lat: " + long + ", " + lat + ")");
