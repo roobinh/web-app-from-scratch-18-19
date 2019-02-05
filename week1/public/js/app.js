@@ -30,6 +30,14 @@ function addElements() {
   	};
 	button.appendChild(node);
 	div.appendChild(button);
+
+	var weatherbutton = document.createElement("button");
+	var node = document.createTextNode("Click here to show weather");
+	weatherbutton.onclick = function(){
+   	 	showWeather();
+  	};
+	weatherbutton.appendChild(node);
+	div.appendChild(weatherbutton);
 	
 	createMap(long, lat);	
 }
@@ -78,4 +86,23 @@ function createMap(long, lat) {
 	    .setLngLat(marker.geometry.coordinates)
 	    .addTo(map);
 	});
+}
+
+var span = document.getElementsByClassName("close")[0];
+var modal = document.getElementById('myModal');
+
+function showWeather() {
+	var modal = document.getElementById('myModal');
+	modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
