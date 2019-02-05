@@ -1,10 +1,42 @@
-var url = "https://ipapi.co/json/";
-var xmlhttp = new XMLHttpRequest();
+function loadIPAPI() {
+	var url = "https://ipapi.co/json/";
+	var xmlhttp = new XMLHttpRequest();
 
-xmlhttp.addEventListener('load', addElements);
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+	xmlhttp.addEventListener('load', addElements);
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
 
+function loadWeatherAPI(long, lat) {
+	var url = "https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude="+ lat + "&longitude=" + long + "&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg";
+	var xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.addEventListener('load', weatherLoaded);
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+
+function weatherLoaded() {
+	var data = JSON.parse(this.responseText);
+	console.log(data['observations']['location'][0]['observation'][0]);
+
+	var temperature = data['observations']['location'][0]['observation'][0]['temperature'];
+	var visibility = data['observations']['location'][0]['observation'][0]['visibility'];
+	var winddirection = data['observations']['location'][0]['observation'][0]['windDesc'];
+	var windspeed = data['observations']['location'][0]['observation'][0]['windSpeed'];
+
+	var weatherdiv = document.getElementById("weatherinfo");
+
+	var paraTemperature = document.createElement("p");
+	var node = document.createTextNode("Current Temperature: " + temperature);
+	paraTemperature.appendChild(node);
+	weatherdiv.appendChild(paraTemperature);
+
+	console.log(temperature);
+	console.log(visibility);
+	console.log(winddirection);
+	console.log(windspeed);
+}
 
 function addElements() {
 	var data = JSON.parse(this.responseText);
@@ -39,7 +71,12 @@ function addElements() {
 	weatherbutton.appendChild(node);
 	div.appendChild(weatherbutton);
 	
-	createMap(long, lat);	
+	if(long == null && lat == null) {
+		console.log("longitude latitude unknown!")
+	} else {
+		createMap(long, lat);
+		loadWeatherAPI(long, lat);
+	}
 }
 
 function createMap(long, lat) {
@@ -88,11 +125,14 @@ function createMap(long, lat) {
 	});
 }
 
-var span = document.getElementsByClassName("close")[0];
-var modal = document.getElementById('myModal');
+
 
 //Weather API
 //https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude=52.3556&longitude=4.9135&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg
+
+var span = document.getElementsByClassName("close")[0];
+var modal = document.getElementById('myModal');
+
 function showWeather() {
 	var modal = document.getElementById('myModal');
 	modal.style.display = "block";
@@ -108,3 +148,5 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+loadIPAPI();
