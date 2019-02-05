@@ -91,6 +91,8 @@ function createMap(long, lat) {
 var span = document.getElementsByClassName("close")[0];
 var modal = document.getElementById('myModal');
 
+//Weather API
+//https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude=52.3556&longitude=4.9135&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg
 function showWeather() {
 	var modal = document.getElementById('myModal');
 	modal.style.display = "block";
