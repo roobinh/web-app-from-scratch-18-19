@@ -1,3 +1,6 @@
+loadIPAPI();
+
+//Functions
 function loadIPAPI() {
 	var url = "https://ipapi.co/json/";
 	var xmlhttp = new XMLHttpRequest();
@@ -8,7 +11,10 @@ function loadIPAPI() {
 }
 
 function loadWeatherAPI(long, lat) {
-	var url = "https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude="+ lat + "&longitude=" + long + "&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg";
+	var url = "https://places.cit.api.here.com/places/v1/discover/search?at=52.5044,13.3909&q=restaurant&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg&pretty&callback=&Accept-Language=de"
+	// var url = "https://weather.api.here.com/weather/1.0/report.json?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg&product=observation&latitude=52.3556&longitude=4.9135&jsoncallback=myCallbackFunction"
+	// var url = "https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude="+ lat + "&longitude=" + long + "&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg&jsoncallback=myCallbackFunction";
+	//	https://weather.api.here.com/weather/1.0/report.json?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg&product=observation&latitude=52.3556&longitude=4.9135
 	var xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.addEventListener('load', weatherLoaded);
@@ -16,8 +22,15 @@ function loadWeatherAPI(long, lat) {
 	xmlhttp.send();
 }
 
+function mals() {
+	console.log('jo');
+}
 function weatherLoaded() {
-	var data = JSON.parse(this.responseText);
+	// var data = JSON.parse(this.responseText);
+	var data = this.responseText.substring(1);
+	console.log(data)
+	console.log(typeof(data))
+	data
 	console.log(data['observations']['location'][0]['observation'][0]);
 
 	var temperature = data['observations']['location'][0]['observation'][0]['temperature'];
@@ -129,7 +142,6 @@ function createMap(long, lat) {
 
 //Weather API
 //https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude=52.3556&longitude=4.9135&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg
-
 var span = document.getElementsByClassName("close")[0];
 var modal = document.getElementById('myModal');
 
@@ -149,4 +161,3 @@ window.onclick = function(event) {
   }
 }
 
-loadIPAPI();
