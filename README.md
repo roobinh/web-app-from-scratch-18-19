@@ -1,11 +1,5 @@
 # Web App From Scratch @cmda-minor-web 18-19
 
-Welke actoren zitten er in jouw applicatie? (actor diagram)
-Welke API wordt gebruikt en wat zijn de beperkingen? (rate limit)
-Hoe flowed interactie door de applicatie? (interaction diagram)
-Welke design patterns en best practices
-Wat zou je nog willen toevoegen (feature wishlist / backlog)
-
 ## Table Of Contents
 1. Doel
 2. Design Patterns
@@ -18,7 +12,7 @@ In dit vak ga ik een site maken die gebruik maakt van de data uit een API. Over 
 
 [Live Demo](https://roobinh.github.io/web-app-from-scratch-18-19/week1/project2/index.html)
 
-## 2. Design Patterns
+## 2. Design Patterns/Interaction
 Voor de site gebruik ik een overzichtelijke front-page met daarin alle pokemon. Door te drukken op een pokemon wordt alle extra informatie over deze pokemon weergegeven.
 
 ## 3. API
