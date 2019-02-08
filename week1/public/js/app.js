@@ -51,7 +51,6 @@ function loadImage(urlstring) {
 	xmlhttp.send();
 }
 
-
 //-----------GET REQUEST-----------//
 function get(url) {
 	return new Promise(function(resolve, reject) {
