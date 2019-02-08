@@ -13,7 +13,7 @@ function printPokemon(data) {
 
 		//Add attributes to new div
 		var clickable = document.createElement('a');
-		clickable.setAttribute('href', 'file:///C:/Users/Robin%20Hofman/Desktop/PokiAPI/pokeinfo.html?id=' + i)
+		clickable.setAttribute('href', 'pokeinfo.html?id=' + i)
 
 		var pokeName = document.createElement('p');
 		var textNode = document.createTextNode(UpperCaseFirstLetter(data['results'][i]['name']));
