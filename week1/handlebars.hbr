@@ -1,0 +1,4 @@
+<div class="pokemon" id="{{id}}">
+    <p>{{pokename}}</p>
+    <img>{{img}}</img>
+</div>

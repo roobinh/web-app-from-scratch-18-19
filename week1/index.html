@@ -6,7 +6,14 @@
 
 	<body>
 
-		<section id="slot">
+		<script id="entry-template" type="text/x-handlebars-template">
+			<div class="pokemon">
+				<p>{{pokename}}</p>
+				<img id="k den" src={{imgurl}}> </img>
+			</div>
+		</script>
+
+		<section id="main">
 			<div id="container">
 				<!-- Pokemon get shown here -->
 			</div>
@@ -16,6 +23,8 @@
 
 	<footer>
 		<!-- Javascript and CSS -->
+		<script src="public/js/handlebars.js"></script>
+		<script src="public/js/routie.js"></script>
 		<script src="public/js/app.js"></script>
 		<link rel="stylesheet" type="text/css" href="public/css/styles.css">
 
