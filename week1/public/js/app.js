@@ -1,3 +1,6 @@
+//localstorage
+let myStorage = window.localStorage;
+
 //-----------SET DEFAULT HASH TO "HOME"-----------//
 if(window.location.hash === "") {
 	window.location.hash = "home"
@@ -6,15 +9,16 @@ if(window.location.hash === "") {
 //-----------ROUTING-----------//
 routie({
     'home': function() {
-		home();
+		renderHomePage();
     },
     'pokeinfo/?:id': function(id) {
-    	renderPokePage(id.substr(4));
+		id = id.substr(4) // '?:id=8' -> '8'
+    	renderPokePage(id);
     }
 });
 
 
-function home() {
+function renderHomePage() {
 	var promise = getData("https://pokeapi.co/api/v2/pokemon/?limit=50");
 
 	promise.then(function(data) {
@@ -56,15 +60,19 @@ function renderHome(data) {
 }
 
 function renderPokePage(id) {
-	var promise2 = getData("https://pokeapi.co/api/v2/pokemon/" + id);
+	var promise = getData("https://pokeapi.co/api/v2/pokemon/" + id);
 
-	promise2.then(function(data) {
+	promise.then(function(data) {
 		console.log(data);
+
+		pokeName = UpperCaseFirstLetter(data['name']);
+		imgUrl = data['sprites']['front_default'];
+
 		var source   = document.getElementById("entry-template").innerHTML;
 		var template = Handlebars.compile(source);
 		var context = {
-			pokename: "Mals", 
-			imgurl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+			pokename: pokeName, 
+			imgurl: imgUrl
 		};
 		var html = template(context);
 
