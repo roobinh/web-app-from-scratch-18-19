@@ -1,3 +1,31 @@
+class IndexView {
+	constructor() {
+		window.addEventListener("hashchange", e => this.onRouteChange(e));
+		this.slot = document.querySelector('#slot');
+	}
+
+	onRouteChange(e) {
+		//When route gets changed.
+		const hashLocation = window.location.hash.substring(1);
+		this.loadContent(hashLocation)
+	} 
+
+	loadContent(uri) {
+		const contentUri = '../pokeinfo.html';
+		//const contentUri = '../' + uri + '.html';
+		fetch(contentUri).
+			then(r => r.text()).then(content => updateSlot(content));
+	}
+
+	updateSlot(content) {
+		console.log(content);
+		this.slot.innerHTML = content;
+	}
+}
+
+new IndexView();
+
+
 //-----------POKEMON ON SCREEN (HTML)-----------//
 function printPokemon(data) {
 	console.log("printPokemon called.")
@@ -13,7 +41,7 @@ function printPokemon(data) {
 
 		//Add attributes to new div
 		var clickable = document.createElement('a');
-		clickable.setAttribute('href', 'pokeinfo.html?id=' + i)
+		clickable.setAttribute('href', '#pokeinfo');// + i)
 
 		var pokeName = document.createElement('p');
 		var textNode = document.createTextNode(UpperCaseFirstLetter(data['results'][i]['name']));
@@ -45,7 +73,7 @@ function loadImage(urlstring) {
 		var data = JSON.parse(this.responseText);
 		pokeImg = document.getElementById(data['name']).getElementsByTagName('img')[0];
 		pokeImg.setAttribute('src', data['sprites']['front_default']);
-		console.log(data);
+		//console.log(data);
 	});
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
@@ -75,7 +103,7 @@ var promise = getData("https://pokeapi.co/api/v2/pokemon/?limit=100");
 
 promise.then(function(data) {
 	console.log("promises worked.");
-	console.log(data);
+	//console.log(data);
 	printPokemon(data);
 }).catch(function(error) {
 	console.log(error);
