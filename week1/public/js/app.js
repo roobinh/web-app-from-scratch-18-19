@@ -52,7 +52,7 @@ function loadImage(urlstring) {
 }
 
 //-----------GET REQUEST-----------//
-function get(url) {
+function getData(url) {
 	return new Promise(function(resolve, reject) {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", url, true);
@@ -71,7 +71,7 @@ function get(url) {
 }
 
 //-----------PROMISES-----------//
-var promise = get("https://pokeapi.co/api/v2/pokemon/?limit=100");
+var promise = getData("https://pokeapi.co/api/v2/pokemon/?limit=100");
 
 promise.then(function(data) {
 	console.log("promises worked.");
