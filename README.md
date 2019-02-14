@@ -7,7 +7,6 @@
 3. API
 4. Future Plans
 
-
 ## 1. Doel
 Mijn site kan je gebruiken voor het opzoeken van alle nodige informatie over ALLE Pokemon!
 
@@ -19,9 +18,13 @@ Live demo van de site: [Live Demo](https://roobinh.github.io/web-app-from-scratc
 Voor de site gebruik ik een overzichtelijke front-page met daarin alle pokemon. Door te drukken op een pokemon wordt alle extra informatie over deze pokemon weergegeven.
 
 ## 3. Installatie
-...
+```
+git clone https://github.com/roobinh/web-app-from-scratch-18-19
 
-## 3. API
+cd web-app-from-scratch-18-19/week1
+```
+
+## 4. API
 De API die wordt gebruikt is de [PokeAPI](https://pokeapi.co/). Deze API heeft alle informatie over alle pokemon als data. 
 
 PokeAPI geeft de volgende data:
@@ -32,7 +35,7 @@ Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan
 
 Voor de documentatie van deze API verwijs ik je naar de [Documentatie](https://pokeapi.co/docs/v2.html).
 
-## 4. Future Plans
+## 5. Future Plans
 - Mogelijkheid om op pokemon te drukken voor alle informatie.
 - Pokemon kleurcodes gebruiken voor de lay-out.
 - Zoekbalk voor het zoeken naar pokemon.
