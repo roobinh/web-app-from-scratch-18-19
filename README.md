@@ -31,9 +31,7 @@ PokeAPI geeft de volgende data:
 * Een lijst met alle pokemon
 * Een specifieke pokemon, met al zijn data (e.g. base speed, ability's en pokemon sprites.)
 
-Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan worden. Verder staat alle informatie op de site.
-
-Voor de documentatie van deze API verwijs ik je naar de [Documentatie](https://pokeapi.co/docs/v2.html).
+Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan worden. Verder staat alle informatie op de site. Voor de documentatie van deze API verwijs ik je naar de [Documentatie](https://pokeapi.co/docs/v2.html).
 
 ## 5. Future Plans
 - Mogelijkheid om op pokemon te drukken voor alle informatie.
