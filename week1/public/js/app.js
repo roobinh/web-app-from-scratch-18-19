@@ -1,5 +1,6 @@
 //localstorage
 let myStorage = window.localStorage;
+myStorage.clear();
 
 //-----------SET DEFAULT HASH TO "HOME"-----------//
 if(window.location.hash === "") {
@@ -17,7 +18,6 @@ routie({
     }
 });
 
-
 function renderHomePage() {
 	var promise = getData("https://pokeapi.co/api/v2/pokemon/?limit=50");
 
@@ -30,9 +30,13 @@ function renderHomePage() {
 
 function renderHome(data) {
 	for(var i=0; i < data['results'].length; i++) {
-		//Set mainDiv
+		loadData(data['results'][i]['url']);
+
+		//Set div's
+		var pokeDiv = document.getElementById('pokemon');
 		var mainDiv = document.getElementById('container');
-		
+		pokeDiv.setAttribute('style', 'display: none;');
+		mainDiv.setAttribute('style', 'display: inline-block;');
 		//Create new div
 		var newdiv = document.createElement('div');
 		newdiv.setAttribute('class', 'pokemon')
@@ -49,7 +53,6 @@ function renderHome(data) {
 		newdiv.appendChild(pokeName);
 
 		var pokeImg = document.createElement('img');
-		loadImage(data['results'][i]['url']);
 		pokeImg.setAttribute('id', data['results'][i]['name'])
 		newdiv.appendChild(pokeImg);
 
@@ -77,7 +80,11 @@ function renderPokePage(id) {
 		var html = template(context);
 
 		var mainDiv = document.getElementById('container');
-		mainDiv.innerHTML = html;
+		mainDiv.setAttribute('style', 'display: none;');
+
+		specificPokemon = document.getElementById('pokemon')
+		specificPokemon.setAttribute('style', 'display: inline-block;');
+		specificPokemon.innerHTML = html;
 	}).catch(function(error) {
 		console.log(error);
 	})
@@ -89,12 +96,14 @@ function UpperCaseFirstLetter(string) {
 }
 
 //-----------LOAD CORRESPONDING IMAGE TO POKEMON-----------//
-function loadImage(urlstring) {
+function loadData(urlstring) {
 	var url = urlstring;
 	var xmlhttp = new XMLHttpRequest();
-
+	console.log("load image:" + urlstring);
 	xmlhttp.addEventListener('load', function() {
 		var data = JSON.parse(this.responseText);
+		//myStorage.setItem(data['id'], JSON.stringify(data));
+		//console.log(JSON.stringify(data));
 		pokeImg = document.getElementById(data['name']).getElementsByTagName('img')[0];
 		pokeImg.setAttribute('src', data['sprites']['front_default']);
 	});
