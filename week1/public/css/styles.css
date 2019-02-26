@@ -23,7 +23,7 @@ a {
 .pokemon {
   display: inline-block;
   margin: 1rem;
-  width: 20rem;
+  width: 350px;
   height: 30%;
   padding: 10px;
   text-align: center;
@@ -35,7 +35,7 @@ a {
   overflow: auto;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 750px) {
     .pokemon {
     	text-align: center;
     	width: 70%;
