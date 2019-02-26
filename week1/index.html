@@ -6,11 +6,24 @@
 
 	<body>
 
+		<form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
+			<input type="text" placeholder="Search Pokemon" name="search2">
+			<button type="submit">ENTER</button>
+		</form>
+
 		<!-- Handlebars single pokemon -->
 		<script id="entry-template" type="text/x-handlebars-template">
 			<div class="pokemon" id="pokemon">
 				<p>{{pokename}}</p>
 				<img src={{imgurl}}>
+				<p>Hitpoints: {{hitpoints}}</p>
+				<p>Attack: {{attack}}</p>
+				<p>Defence: {{defence}}</p>
+				<p>Special attack: {{specialattack}}</p>
+				<p>Special defence: {{specialdefence}}</p>
+				<p>Speed: {{speed}}</p>
+
+				<p></p>
 			</div>
 		</script>
 

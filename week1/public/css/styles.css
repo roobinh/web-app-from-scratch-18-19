@@ -14,7 +14,7 @@ a {
   display: inline-block;
   margin: 1rem;
   width: 350px;
-  height: 30%;
+  height: auto;
   padding: 10px;
   text-align: center;
   box-shadow: 10px 10px 20px #505050; 
@@ -39,8 +39,39 @@ a {
 
 img {
 	image-rendering: pixelated;
-	width: 50%;
-	height: 70%;
+	width: 250px;
+	height: 200px;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2dc795;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #047450;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 

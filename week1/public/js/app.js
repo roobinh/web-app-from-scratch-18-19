@@ -48,14 +48,28 @@ const renderer = {
 		}
 	},
 	pokepage(data) {
+		console.log(data);
+
 		pokeName = UpperCaseFirstLetter(data['name']);
 		imgUrl = data['sprites']['front_default'];
+		Hitpoints = data['stats'][5]['base_stat'];
+		Attack = data['stats'][4]['base_stat'];
+		Defence = data['stats'][3]['base_stat'];
+		SpecialAttack = data['stats'][2]['base_stat'];
+		SpecialDefence = data['stats'][1]['base_stat'];
+		Speed = data['stats'][0]['base_stat'];
 
 		var source   = document.getElementById("entry-template").innerHTML;
 		var template = Handlebars.compile(source);
 		var context = {
 			pokename: pokeName, 
-			imgurl: imgUrl
+			imgurl: imgUrl,
+			hitpoints: Hitpoints,
+			attack: Attack,
+			defence: Defence,
+			specialattack: SpecialAttack,
+			specialdefence: SpecialDefence,
+			speed: Speed
 		};
 		var html = template(context);
 
