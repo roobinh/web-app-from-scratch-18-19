@@ -1,3 +1,4 @@
+/* General Styling */
 * {
 	font-family: 'Inconsolata', monospace;
 }
@@ -10,11 +11,9 @@ a {
 	color: black;
 }
 
+/* Specific Styling */
 .pokemon {
-  display: inline-block;
-  margin: 1rem;
-  width: 350px;
-  height: auto;
+  margin: 1em;
   padding: 10px;
   text-align: center;
   box-shadow: 10px 10px 20px #505050; 
@@ -22,19 +21,24 @@ a {
   border-radius: 4px;
   border-bottom-style:solid;
   border-bottom:9px solid #2dc795;
-  overflow: auto;
 }
 
-#pokemon {
-  left: 50%;
-  margin: auto;
+.container {
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-template-rows: repeat(3, auto);
+  justify-items: stretch;
+  justify-content: center;
+  align-content: start;
+  align-items: start;
 }
+
 #singlepokemon {
   text-align: center;
 }
 
 #pokemons {
-    text-align:center;
+  text-align:center;
 }
 
 img {
@@ -43,6 +47,7 @@ img {
 	height: 200px;
 }
 
+/* Zoekbar Styling */
 form.example input[type=text] {
   padding: 10px;
   font-size: 17px;
@@ -74,7 +79,7 @@ form.example::after {
   display: table;
 }
 
-
+/* Media Querrys */
 @media only screen and (max-width: 750px) {
     .pokemon {
     	text-align: center;

@@ -11,11 +11,11 @@ const renderer = {
 	home(data) {
 		for(var i=0; i < data['results'].length; i++) {
 			//Set div's
-			var pokeDiv = document.getElementById('container');
-			var mainDiv = document.getElementById('pokemons');
-
+			var mainDiv = document.getElementById('container');
+			var pokeDiv = document.getElementById('singlepokemon');
+			
+			mainDiv.setAttribute('style', 'display: grid;');
 			pokeDiv.setAttribute('style', 'display: none;');
-			mainDiv.setAttribute('style', 'display: inline-block;');
 
 			//Create new div
 			var newdiv = document.createElement('div');
@@ -39,7 +39,7 @@ const renderer = {
 			//Add created div to main div
 			clickable.appendChild(newdiv)
 			mainDiv.appendChild(clickable);
-			mainDiv.setAttribute('style', 'display: inline-block;');
+			mainDiv.setAttribute('style', 'display: grid;');
 
 			specificPokemon = document.getElementById('singlepokemon');
 			specificPokemon.setAttribute('style', 'display: none;');
@@ -73,11 +73,11 @@ const renderer = {
 		};
 		var html = template(context);
 
-		var mainDiv = document.getElementById('pokemons');
+		var mainDiv = document.getElementById('container');
 		mainDiv.setAttribute('style', 'display: none;');
 
 		specificPokemon = document.getElementById('singlepokemon');
-		specificPokemon.setAttribute('style', 'display: inline-block;');
+		specificPokemon.setAttribute('style', 'display: grid;');
 		specificPokemon.innerHTML = html;
 	}
 }
