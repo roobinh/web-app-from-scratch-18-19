@@ -7,67 +7,41 @@ if(window.location.hash === "") {
 	window.location.hash = "home"
 }
 
-//-----------ROUTING-----------//
-routie({
-    'home': function() {
-		renderHomePage();
-    },
-    'pokeinfo/?:id': function(id) {
-		id = id.substr(4) // '?:id=8' -> '8'
-    	renderPokePage(id);
-    }
-});
-
-function renderHomePage() {
-	var promise = getData("https://pokeapi.co/api/v2/pokemon/?limit=50");
-
-	promise.then(function(data) {
-		renderHome(data);
-	}).catch(function(error) {
-		console.log(error);
-	})
-}
-
-function renderHome(data) {
-	for(var i=0; i < data['results'].length; i++) {
-		loadData(data['results'][i]['url']);
-
-		//Set div's
-		var pokeDiv = document.getElementById('pokemon');
-		var mainDiv = document.getElementById('container');
-		pokeDiv.setAttribute('style', 'display: none;');
-		mainDiv.setAttribute('style', 'display: inline-block;');
-		//Create new div
-		var newdiv = document.createElement('div');
-		newdiv.setAttribute('class', 'pokemon')
-		newdiv.setAttribute('id', data['results'][i]['name'])
-
-		//Add attributes to new div
-		var clickable = document.createElement('a');
-		var id = parseInt(i) + 1;
-		clickable.setAttribute('href', '#pokeinfo?id=' + id);
-
-		var pokeName = document.createElement('p');
-		var textNode = document.createTextNode(UpperCaseFirstLetter(data['results'][i]['name']));
-		pokeName.appendChild(textNode);
-		newdiv.appendChild(pokeName);
-
-		var pokeImg = document.createElement('img');
-		pokeImg.setAttribute('id', data['results'][i]['name'])
-		newdiv.appendChild(pokeImg);
-
-		//Add created div to main div
-		clickable.appendChild(newdiv)
-		mainDiv.appendChild(clickable);
-	}
-}
-
-function renderPokePage(id) {
-	var promise = getData("https://pokeapi.co/api/v2/pokemon/" + id);
-
-	promise.then(function(data) {
-		console.log(data);
-
+const renderer = {
+	home(data) {
+		for(var i=0; i < data['results'].length; i++) {
+			loadData(data['results'][i]['url']);
+	
+			//Set div's
+			var pokeDiv = document.getElementById('pokemon');
+			var mainDiv = document.getElementById('container');
+			pokeDiv.setAttribute('style', 'display: none;');
+			mainDiv.setAttribute('style', 'display: inline-block;');
+			//Create new div
+			var newdiv = document.createElement('div');
+			newdiv.setAttribute('class', 'pokemon')
+			newdiv.setAttribute('id', data['results'][i]['name'])
+	
+			//Add attributes to new div
+			var clickable = document.createElement('a');
+			var id = parseInt(i) + 1;
+			clickable.setAttribute('href', '#pokeinfo?id=' + id);
+	
+			var pokeName = document.createElement('p');
+			var textNode = document.createTextNode(UpperCaseFirstLetter(data['results'][i]['name']));
+			pokeName.appendChild(textNode);
+			newdiv.appendChild(pokeName);
+	
+			var pokeImg = document.createElement('img');
+			pokeImg.setAttribute('id', data['results'][i]['name'])
+			newdiv.appendChild(pokeImg);
+	
+			//Add created div to main div
+			clickable.appendChild(newdiv)
+			mainDiv.appendChild(clickable);
+		}
+	},
+	pokepage(data) {
 		pokeName = UpperCaseFirstLetter(data['name']);
 		imgUrl = data['sprites']['front_default'];
 
@@ -85,9 +59,26 @@ function renderPokePage(id) {
 		specificPokemon = document.getElementById('pokemon')
 		specificPokemon.setAttribute('style', 'display: inline-block;');
 		specificPokemon.innerHTML = html;
-	}).catch(function(error) {
-		console.log(error);
-	})
+	}
+}
+
+const router = {
+	allPokemon() {
+		var promise = getData("https://pokeapi.co/api/v2/pokemon/?limit=50");
+		promise.then(function(data) {
+			render.home(data)
+		}).catch(function(error) {
+			console.log(error);
+		})
+	},
+	specificPokemon(id) {
+		var promise = getData("https://pokeapi.co/api/v2/pokemon/" + id);
+		promise.then(function(data) {
+			render.pokepage(data)
+		}).catch(function(error) {
+			console.log(error);
+		})
+	}
 }
 
 //-----------MAKE FIRST LETTER OF STRING UC-----------//
@@ -102,8 +93,6 @@ function loadData(urlstring) {
 	console.log("load image:" + urlstring);
 	xmlhttp.addEventListener('load', function() {
 		var data = JSON.parse(this.responseText);
-		//myStorage.setItem(data['id'], JSON.stringify(data));
-		//console.log(JSON.stringify(data));
 		pokeImg = document.getElementById(data['name']).getElementsByTagName('img')[0];
 		pokeImg.setAttribute('src', data['sprites']['front_default']);
 	});
@@ -129,3 +118,18 @@ function getData(url) {
 		xmlhttp.send();
 	});
 }
+
+//-----------VARIABLES-----------//
+const render = Object.create(renderer);
+const route = Object.create(router);
+
+//-----------ROUTING-----------//
+routie({
+    'home': function() {
+		route.allPokemon();
+    },
+    'pokeinfo/?:id': function(id) {
+		id = id.substr(4) // '?:id=8' -> '8'
+    	route.specificPokemon(id);
+    }
+});
