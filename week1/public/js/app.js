@@ -10,13 +10,13 @@ if(window.location.hash === "") {
 const renderer = {
 	home(data) {
 		for(var i=0; i < data['results'].length; i++) {
-			loadData(data['results'][i]['url']);
-	
 			//Set div's
-			var pokeDiv = document.getElementById('pokemon');
-			var mainDiv = document.getElementById('container');
+			var pokeDiv = document.getElementById('container');
+			var mainDiv = document.getElementById('pokemons');
+
 			pokeDiv.setAttribute('style', 'display: none;');
 			mainDiv.setAttribute('style', 'display: inline-block;');
+
 			//Create new div
 			var newdiv = document.createElement('div');
 			newdiv.setAttribute('class', 'pokemon')
@@ -39,6 +39,12 @@ const renderer = {
 			//Add created div to main div
 			clickable.appendChild(newdiv)
 			mainDiv.appendChild(clickable);
+			mainDiv.setAttribute('style', 'display: inline-block;');
+
+			specificPokemon = document.getElementById('singlepokemon');
+			specificPokemon.setAttribute('style', 'display: none;');
+
+			loadImage(data['results'][i]['url']);
 		}
 	},
 	pokepage(data) {
@@ -53,10 +59,10 @@ const renderer = {
 		};
 		var html = template(context);
 
-		var mainDiv = document.getElementById('container');
+		var mainDiv = document.getElementById('pokemons');
 		mainDiv.setAttribute('style', 'display: none;');
 
-		specificPokemon = document.getElementById('pokemon')
+		specificPokemon = document.getElementById('singlepokemon');
 		specificPokemon.setAttribute('style', 'display: inline-block;');
 		specificPokemon.innerHTML = html;
 	}
@@ -87,7 +93,7 @@ function UpperCaseFirstLetter(string) {
 }
 
 //-----------LOAD CORRESPONDING IMAGE TO POKEMON-----------//
-function loadData(urlstring) {
+function loadImage(urlstring) {
 	var url = urlstring;
 	var xmlhttp = new XMLHttpRequest();
 	console.log("load image:" + urlstring);

@@ -10,16 +10,6 @@ a {
 	color: black;
 }
 
-#container {
-    text-align:center;
-}
-
-#container img {
-	image-rendering: pixelated;
-	width: 50%;
-	height: 70%;
-}
-
 .pokemon {
   display: inline-block;
   margin: 1rem;
@@ -35,10 +25,29 @@ a {
   overflow: auto;
 }
 
+#pokemon {
+  left: 50%;
+  margin: auto;
+}
+#singlepokemon {
+  text-align: center;
+}
+
+#pokemons {
+    text-align:center;
+}
+
+img {
+	image-rendering: pixelated;
+	width: 50%;
+	height: 70%;
+}
+
+
 @media only screen and (max-width: 750px) {
     .pokemon {
     	text-align: center;
-    	width: 70%;
-    	height: 50%;
+    	width: 50%;
+    	height: 70%;
     }
 }

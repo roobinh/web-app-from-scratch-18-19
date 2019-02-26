@@ -6,21 +6,23 @@
 
 	<body>
 
+		<!-- Handlebars single pokemon -->
 		<script id="entry-template" type="text/x-handlebars-template">
-			<div class="pokemon">
+			<div class="pokemon" id="pokemon">
 				<p>{{pokename}}</p>
-				<img id="k den" src={{imgurl}}> </img>
+				<img src={{imgurl}}>
 			</div>
 		</script>
 
 		<div class="singlepokemon">
-			<div id="pokemon">
+			<div id="singlepokemon">
 				<!-- Single pokemon get shown here-->
 			</div>	
 		</div>
 
-		<section id="main">
-			<div id="container">
+		<!-- All pokemon -->
+		<section id="pokemons">
+			<div class="pokemon" id="container">
 				<!-- Pokemon get shown here -->
 			</div>
 		</section>
