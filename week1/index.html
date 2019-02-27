@@ -5,7 +5,6 @@
 
 
 	<body>
-
 		<form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
 			<input type="text" placeholder="Search Pokemon" name="search2">
 			<button type="submit">ENTER</button>
@@ -14,8 +13,11 @@
 		<!-- Handlebars single pokemon -->
 		<script id="entry-template" type="text/x-handlebars-template">
 			<div class="pokemon" id="pokemon">
+				<a href=#home><button>Back</button></a>
 				<p>{{pokename}}</p>
+
 				<img src={{imgurl}}>
+
 				<p>Hitpoints: {{hitpoints}}</p>
 				<p>Attack: {{attack}}</p>
 				<p>Defence: {{defence}}</p>
@@ -47,6 +49,9 @@
 		<script src="public/js/app.js"></script>
 		<link rel="stylesheet" type="text/css" href="public/css/styles.css">
 
+		<!-- Font Awesome-->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css">
+		
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 	</footer>
