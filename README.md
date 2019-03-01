@@ -50,13 +50,13 @@ Naast dat de site goed werkt, voldoet de site aan alle gestelde eisen. Hieronder
 **4.** Voor het verwerken van de data heb ik andere slimme methodes gebruikt om JSON data te manipuleren. Een van die methodes is hieronder te zien.
 ```javascript
     pokeName = UpperCaseFirstLetter(data['name']);
-	imgUrl = 			data['sprites']['front_default'];
+	imgUrl = 		data['sprites']['front_default'];
 	Hitpoints = 		data['stats'][5]['base_stat'];
-	Attack = 			data['stats'][4]['base_stat'];
-	Defence = 			data['stats'][3]['base_stat'];
+	Attack = 		data['stats'][4]['base_stat'];
+	Defence = 		data['stats'][3]['base_stat'];
 	SpecialAttack = 	data['stats'][2]['base_stat'];
 	SpecialDefence = 	data['stats'][1]['base_stat'];
-	Speed = 			data['stats'][0]['base_stat'];
+	Speed = 		data['stats'][0]['base_stat'];
 ```
 
 **5.** Voor het renderen van de data naar HTML heb ik de micro library HandleBars gebruikt. Code daarvan is hieronder te zien:
@@ -70,7 +70,7 @@ var source   = document.getElementById("entry-template").innerHTML;
 		attack: Attack,
 		defence: Defence,
 		specialattack: SpecialAttack,
-    	specialdefence: SpecialDefence,
+    	    specialdefence: SpecialDefence,
 		speed: Speed
 		};
 	var html = template(context);
@@ -85,7 +85,7 @@ routie({
     'pokemon/?:id': function(id) {
 		id = id.substr(4) // '?:id=8' -> '8'
     	route.pokemonID(id);
-	},
+    },
 	'search/:name': function(name) {
 		route.pokemonName(name);
 	}
