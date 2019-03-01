@@ -4,8 +4,9 @@
 1. Doel
 2. Design Patterns
 3. Installatie
-3. API
-4. Future Plans
+4. API
+5. Future Plans
+6. Extra: Grading
 
 ## 1. Doel
 Mijn site kan je gebruiken voor het opzoeken van alle nodige informatie over ALLE Pokemon!
@@ -35,5 +36,63 @@ Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan
 
 ## 5. Future Plans
 - Mogelijkheid om op pokemon te drukken voor alle informatie.
-- Pokemon kleurcodes gebruiken voor de lay-out.
 - Zoekbalk voor het zoeken naar pokemon.
+
+## Extra: Grading
+Naast dat de site goed werkt, voldoet de site aan alle gestelde eisen. Hieronder een korte toelichting:
+
+**1.** Naar mijn mening is de code duidelijk te begrijpen en zit er een logische structuur in. Ook wordt er gebruik gemaakt van comments, zodat het overnemen van de code makkelijk is.
+
+**2.** Er wordt in mijn code amper gebruik gemaakt van de globale scope, behalve voor de data uit de PokeAPI.
+
+**3.** Ik heb me verdiept in de API en gebruik de meest efficiente manier van data ophalen. Het is alleen mogelijk om alle pokemon data op te vragen via de PokeAPI.
+
+**4.** Voor het verwerken van de data heb ik andere slimme methodes gebruikt om JSON data te manipuleren. Een van die methodes is hieronder te zien.
+```javascript
+    pokeName = UpperCaseFirstLetter(data['name']);
+	imgUrl = 			data['sprites']['front_default'];
+	Hitpoints = 		data['stats'][5]['base_stat'];
+	Attack = 			data['stats'][4]['base_stat'];
+	Defence = 			data['stats'][3]['base_stat'];
+	SpecialAttack = 	data['stats'][2]['base_stat'];
+	SpecialDefence = 	data['stats'][1]['base_stat'];
+	Speed = 			data['stats'][0]['base_stat'];
+```
+
+**5.** Voor het renderen van de data naar HTML heb ik de micro library HandleBars gebruikt. Code daarvan is hieronder te zien:
+```javascript
+var source   = document.getElementById("entry-template").innerHTML;
+    var template = Handlebars.compile(source);
+    var context = {
+        pokename: pokeName, 
+        imgurl: imgUrl,
+		hitpoints: Hitpoints,
+		attack: Attack,
+		defence: Defence,
+		specialattack: SpecialAttack,
+    	specialdefence: SpecialDefence,
+		speed: Speed
+		};
+	var html = template(context);
+```
+
+**6.** Voor de routing heb ik de micro library Routie.js gebruikt. Code daarvan is hieronder te zien:
+```javascript
+routie({
+    'home': function() {
+		route.allPokemon();
+    },
+    'pokemon/?:id': function(id) {
+		id = id.substr(4) // '?:id=8' -> '8'
+    	route.pokemonID(id);
+	},
+	'search/:name': function(name) {
+		route.pokemonName(name);
+	}
+});
+```
+
+**7.** Omdat de applicatie relatief simpel is, is het duidelijk wat er van de gebruiker verwacht wordt.
+
+**8.** Ook heb ik feedback toegepast door een laad icoon tijdens het laden.
+

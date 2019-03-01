@@ -9,7 +9,7 @@ const renderer = {
 			//Set div's
 			var mainDiv = document.getElementById('container');
 			var pokeDiv = document.getElementById('singlepokemon');
-			
+			 
 			mainDiv.setAttribute('style', 'display: grid;');
 			pokeDiv.setAttribute('style', 'display: none;');
 
@@ -130,7 +130,6 @@ const pokeApi = {
 	loadImage(urlstring) {
 		var url = urlstring;
 		var xmlhttp = new XMLHttpRequest();
-		console.log("load image:" + urlstring);
 		xmlhttp.addEventListener('load', function() {
 			var data = JSON.parse(this.responseText);
 			pokeImg = document.getElementById(data['name']).getElementsByTagName('img')[0];			
@@ -168,7 +167,6 @@ routie({
 
 function searchPokemon() {
 	var name = document.getElementById("pokemonsearch").value;
-	console.log(name);
 	window.location.replace("#search/" + name)
 	// window.location.href("/pokemonname?:name" + nameValue);
 }
