@@ -1,7 +1,3 @@
-//-----------localstorage-----------//
-let myStorage = window.localStorage;
-myStorage.clear();
-
 //-----------SET DEFAULT HASH TO "HOME"-----------//
 if(window.location.hash === "") {
 	window.location.hash = "home"
@@ -36,7 +32,7 @@ const renderer = {
 
 			var clickable = document.createElement('a');
 			var id = parseInt(i) + 1;
-			clickable.setAttribute('href', '#pokeinfo?id=' + id);			
+			clickable.setAttribute('href', '#pokemon?id=' + id);			
 
 			//Add created div to main div
 			clickable.appendChild(newdiv)
@@ -50,15 +46,15 @@ const renderer = {
 		}
 	},
 	pokepage(data) {
-		console.log(data);
 		pokeName = UpperCaseFirstLetter(data['name']);
-		imgUrl = 					data['sprites']['front_default'];
-		Hitpoints = 			data['stats'][5]['base_stat'];
-		Attack = 					data['stats'][4]['base_stat'];
-		Defence = 				data['stats'][3]['base_stat'];
+		imgUrl = 			data['sprites']['front_default'];
+		Hitpoints = 		data['stats'][5]['base_stat'];
+		Attack = 			data['stats'][4]['base_stat'];
+		Defence = 			data['stats'][3]['base_stat'];
 		SpecialAttack = 	data['stats'][2]['base_stat'];
 		SpecialDefence = 	data['stats'][1]['base_stat'];
-		Speed = 					data['stats'][0]['base_stat'];
+		Speed = 			data['stats'][0]['base_stat'];
+
 		var source   = document.getElementById("entry-template").innerHTML;
 		var template = Handlebars.compile(source);
 		var context = {
@@ -77,7 +73,7 @@ const renderer = {
 		mainDiv.setAttribute('style', 'display: none;');
 
 		specificPokemon = document.getElementById('singlepokemon');
-		specificPokemon.setAttribute('style', 'display: grid	;');
+		specificPokemon.setAttribute('style', 'display: grid;');
 		specificPokemon.innerHTML = html;
 	}
 }
@@ -91,19 +87,22 @@ const router = {
 			console.log(error);
 		})
 	},
-	specificPokemon(id) {
+	pokemonID(id) {
 		var promise = api.getData("https://pokeapi.co/api/v2/pokemon/" + id);
 		promise.then(function(data) {
 			render.pokepage(data)
 		}).catch(function(error) {
 			console.log(error);
 		})
+	},
+	pokemonName(name) {
+		var promise = api.getData("https://pokeapi.co/api/v2/pokemon/" + name);
+		promise.then(function(data) {
+			render.pokepage(data)
+		}).catch(function(error) {
+			console.log(error);
+		})
 	}
-}
-
-//-----------MAKE FIRST LETTER OF STRING UC-----------//
-function UpperCaseFirstLetter(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 const pokeApi = {
@@ -142,6 +141,11 @@ const pokeApi = {
 	}
 }
 
+//-----------MAKE FIRST LETTER OF STRING UC-----------//
+function UpperCaseFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 //-----------VARIABLES-----------//
 const render = Object.create(renderer);
 const route = Object.create(router);
@@ -150,10 +154,21 @@ const api = Object.create(pokeApi);
 //-----------ROUTING-----------//
 routie({
     'home': function() {
-			route.allPokemon();
+		route.allPokemon();
     },
-    'pokeinfo/?:id': function(id) {
-			id = id.substr(4) // '?:id=8' -> '8'
-    	route.specificPokemon(id);
-    }
+    'pokemon/?:id': function(id) {
+		id = id.substr(4) // '?:id=8' -> '8'
+    	route.pokemonID(id);
+	},
+	'search/:name': function(name) {
+		route.pokemonName(name);
+	}
 });
+
+function searchPokemon() {
+	console.log('jo');
+	var name = document.getElementById("pokemonsearch").value;
+	console.log(name);
+	window.location.replace("#search/" + name)
+	// window.location.href("/pokemonname?:name" + nameValue);
+}
