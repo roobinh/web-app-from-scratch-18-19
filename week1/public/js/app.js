@@ -1,6 +1,9 @@
-//-----------SET DEFAULT HASH TO "HOME"-----------//
+
 (function () {
-	window.location.hash = "home";
+	//-----------SET DEFAULT HASH TO "HOME"-----------//
+	if(window.location.hash === "") {
+		window.location.hash = "home";
+	}
 	
 	const renderer = {
 		home: function(data) {
