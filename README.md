@@ -41,7 +41,7 @@ Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan
 ## Extra: Grading
 Naast dat de site goed werkt, voldoet de site aan alle gestelde eisen. Hieronder een korte toelichting:
 
-![WAFS Grading](https://ibb.co/WHhLr75)
+[WAFS Grading](https://ibb.co/WHhLr75)
 
 **1.** Naar mijn mening is de code duidelijk te begrijpen en zit er een logische structuur in. Ook wordt er gebruik gemaakt van comments, zodat het overnemen van de code makkelijk is.
 
