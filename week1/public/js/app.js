@@ -115,6 +115,7 @@ const pokeApi = {
 				if(xmlhttp.status == 200) {
 					resolve(JSON.parse(xmlhttp.response));
 				} else {
+					alert("Sorry, that pokemon could not be found!");
 					reject(xmlhttp.statusText);
 				}
 			};
@@ -166,7 +167,6 @@ routie({
 });
 
 function searchPokemon() {
-	console.log('jo');
 	var name = document.getElementById("pokemonsearch").value;
 	console.log(name);
 	window.location.replace("#search/" + name)
