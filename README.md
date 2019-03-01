@@ -41,7 +41,7 @@ Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan
 ## Extra: Grading
 Naast dat de site goed werkt, voldoet de site aan alle gestelde eisen. Hieronder een korte toelichting:
 
-![WAFS Grading](https://i.ibb.co/p17SHNw/WAFS-Rubric.jpg)
+![WAFS Grading](https://ibb.co/WHhLr75)
 
 **1.** Naar mijn mening is de code duidelijk te begrijpen en zit er een logische structuur in. Ook wordt er gebruik gemaakt van comments, zodat het overnemen van de code makkelijk is.
 
@@ -71,7 +71,7 @@ var source   = document.getElementById("entry-template").innerHTML;
 		hitpoints: Hitpoints,
 		attack: Attack,
 		defence: Defence,
-		specialattack: SpecialAttack,
+		specialattack: SpecialAttack, 
     	    specialdefence: SpecialDefence,
 		speed: Speed
 		};
@@ -88,9 +88,9 @@ routie({
 		id = id.substr(4) // '?:id=8' -> '8'
     	route.pokemonID(id);
     },
-	'search/:name': function(name) {
-		route.pokemonName(name);
-	}
+'search/:name': function(name) {
+    route.pokemonName(name);
+}
 });
 ```
 
