@@ -29,14 +29,14 @@ cd web-app-from-scratch-18-19/week1
 De API die wordt gebruikt is de [PokeAPI](https://pokeapi.co/). Deze API heeft alle informatie over alle pokemon als data. 
 
 PokeAPI geeft de volgende data:
-- [x] Een lijst met alle pokemon
-- [x] Een specifieke pokemon, met al zijn data (e.g. base speed, ability's en pokemon sprites.)
+- Een lijst met alle pokemon
+- Een specifieke pokemon, met al zijn data (e.g. base speed, ability's en pokemon sprites.)
 
 Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan worden. Verder staat alle informatie op de site. Voor de documentatie van deze API verwijs ik je naar de [Documentatie](https://pokeapi.co/docs/v2.html).
 
 ## 5. Future Plans
-- Mogelijkheid om op pokemon te drukken voor alle informatie.
-- Zoekbalk voor het zoeken naar pokemon.
+- [x] Mogelijkheid om op pokemon te drukken voor alle informatie.
+- [x] Zoekbalk voor het zoeken naar pokemon.
 
 ## Extra: Grading
 Naast dat de site goed werkt, voldoet de site aan alle gestelde eisen. Hieronder een korte toelichting:
