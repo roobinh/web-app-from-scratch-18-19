@@ -96,7 +96,7 @@ const router = {
 		})
 	},
 	pokemonName(name) {
-		var promise = api.getData("https://pokeapi.co/api/v2/pokemon/" + name);
+		var promise = api.getData("https://pokeapi.co/api/v2/pokemon/" + name.toLowerCase());
 		promise.then(function(data) {
 			render.pokepage(data)
 		}).catch(function(error) {
@@ -116,6 +116,7 @@ const pokeApi = {
 					resolve(JSON.parse(xmlhttp.response));
 				} else {
 					alert("Sorry, that pokemon could not be found!");
+					window.location.hash = "home";
 					reject(xmlhttp.statusText);
 				}
 			};
