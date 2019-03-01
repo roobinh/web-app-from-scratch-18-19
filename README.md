@@ -41,6 +41,8 @@ Restrictions: Er kunnen maximaal 100 API requests per IP-Adres per minuut gedaan
 ## Extra: Grading
 Naast dat de site goed werkt, voldoet de site aan alle gestelde eisen. Hieronder een korte toelichting:
 
+![WAFS Grading](https://i.ibb.co/p17SHNw/WAFS-Rubric.jpg)
+
 **1.** Naar mijn mening is de code duidelijk te begrijpen en zit er een logische structuur in. Ook wordt er gebruik gemaakt van comments, zodat het overnemen van de code makkelijk is.
 
 **2.** Er wordt in mijn code amper gebruik gemaakt van de globale scope, behalve voor de data uit de PokeAPI.
