@@ -166,8 +166,7 @@ routie({
 	}
 });
 
-function searchPokemon() {
+document.getElementById("search").addEventListener("click", function(){
 	var name = document.getElementById("pokemonsearch").value;
-	window.location.replace("#search/" + name)
-	// window.location.href("/pokemonname?:name" + nameValue);
-}
+	window.location.replace("#search/" + name);
+});
